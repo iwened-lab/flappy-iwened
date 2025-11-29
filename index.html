@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Flappy IWENED</title>
+    <title>Flappy IWENED - Le jeu créé avec Gemini</title>
+    
+    <meta name="description" content="Flappy IWENED est un jeu mobile inspiré de Flappy Bird créé par IWENED avec l'aide de Google Gemini. Jouez gratuitement !">
+    <meta name="keywords" content="Flappy, IWENED, jeu vidéo, flappy bird, google gemini, jeu mobile, youtube">
+    
     <style>
         body {
             margin: 0;
@@ -39,6 +43,31 @@
             position: absolute;
             top: 10%;
         }
+        /* --- STYLE DU BOUTON YOUTUBE --- */
+        #youtubeLink {
+            position: absolute;
+            top: 15px; 
+            left: 15px; 
+            pointer-events: auto; 
+            z-index: 1000; 
+        }
+        #youtubeLink a {
+            display: block;
+            background-color: #FF0000; 
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background-color 0.2s;
+        }
+        #youtubeLink a:hover {
+            background-color: #CC0000;
+        }
+        /* --- FIN STYLE YOUTUBE --- */
+
         .message {
             background: rgba(255, 255, 255, 0.95); 
             padding: 25px;
@@ -92,13 +121,20 @@
             box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
         }
         #restartButton {
-             background-color: #f44336; /* Rouge pour le bouton Rejouer */
+             background-color: #f44336; 
         }
     </style>
 </head>
 <body>
 
     <div id="ui-layer">
+        
+        <div id="youtubeLink">
+            <a href="https://www.youtube.com/@IWENED" target="_blank">
+                ▶️ Ma Chaîne YTB
+            </a>
+        </div>
+        
         <div class="score" id="scoreDisplay">0</div>
         
         <div class="message" id="startScreen" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -254,7 +290,7 @@
                 let birdBottom = bird.y + bird.radius;
 
                 let pipeLeft = p.x;
-                let pipeRight = p.x + this.w; // Corrigé : utilisation de this.w
+                let pipeRight = p.x + this.w; 
                 let pipeTop = p.y;
                 let pipeBottom = p.y + this.gap;
 
@@ -265,8 +301,7 @@
                     }
                 }
                 
-                // --- DÉTECTION DU SCORE CORRIGÉE ---
-                // Le score augmente quand le bord droit du tuyau passe le centre de l'oiseau
+                // --- DÉTECTION DU SCORE ---
                 if (p.x + this.w < bird.x && !p.passed) {
                     score++;
                     scoreDisplay.innerText = score;
@@ -276,7 +311,7 @@
                 // Suppression du tuyau une fois sorti de l'écran
                 if (p.x + this.w <= 0) {
                     this.position.shift();
-                    i--; // Ajuster l'index après suppression
+                    i--; 
                 }
             }
         },
